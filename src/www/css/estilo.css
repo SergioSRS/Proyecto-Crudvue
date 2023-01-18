@@ -15,7 +15,7 @@
     font-weight: normal;
 }
 body{
-    background-color:#000000;
+    background:linear-gradient(135deg,#000000,#373636);
     color:white;
 }
 table,td,th{
