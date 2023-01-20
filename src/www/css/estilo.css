@@ -4,13 +4,13 @@
 }
 @font-face{
     font-family: 'Open Sans';
-    src: url('../assets/AUTOMANI.TTF') format('truetype');
+    src: url('../assets/AUTOMANI.TTF') ;
     font-style: normal;
     font-weight: normal;
 }
 @font-face{
     font-family: '"Times New Roman';
-    src: url('../assets/Flottflott.TTF') format('truetype');
+    src: url('../assets/Flottflott.TTF') ;
     font-style: normal;
     font-weight: normal;
 }
@@ -108,4 +108,24 @@ div.formulario label, div.formulario div, div.formulario  input{
 }
 .aceptar {
 
+}
+#contenedor{
+    font-family: '"Times New Roman';
+    font-size:1.5rem;
+    margin-left:10%;
+}
+#fotoConsulta{
+    width:20%;
+}
+@media (max-width:800px){
+    div#cabecera{
+        display:none;
+    }
+    div.formulario{
+        width:100%;
+        height:100vh;
+        overflow: hidden;
+        margin:0;
+       
+    }
 }
