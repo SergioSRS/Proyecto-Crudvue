@@ -29,6 +29,7 @@ h1{
 img{
     width: 100%;
 }
+
 div#cabecera{
     display: flex;
     gap:20px;
@@ -72,33 +73,39 @@ table{
     color:black;
     box-shadow: 0px 1px 1px 1px #0400ff;
 }
-table #titulotabla {
+table thead tr:first-child {
     color:#ff00aa;
     font-size: 2rem;
+    text-align:center;
     
 }
 table > tbody, #campos{
     text-align:center;
     font-size: 1.5rem;;
 }
-form{
+div.formulario{
     font-size:1.3rem;
     font-family: '"Times New Roman';
     color:black;
    display:flex; 
    padding:10px;
    flex-flow:wrap;
-   width:30%;
+   width:50%;
    background-color: #999ce0;
    position:relative;
    margin: 0 auto;
 }
-form label, form div, form input{
+div.formulario label, div.formulario div, div.formulario  input{
     margin:20px;
 }
-#tituloProceso{
+.tituloProceso{
     font-family: 'Open Sans';
     text-align:center;
     margin:10px;
 }
+.cancelar{
 
+}
+.aceptar {
+
+}

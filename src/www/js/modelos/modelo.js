@@ -31,30 +31,109 @@ export class Modelo{
 			console.error("No se ha podido conectar")
 		}
 	}
+	/** 
+	 * Edita un registro de la base de datos buscando por un id
+	*/
+    editar(id, nombre, precio, fecha, descripcion, edad, tematicas, estado, file){
+		
+		const request = this.baseDatos.transaction('videojuegos','readwrite').objectStore("videojuegos").get(id)
+		
+	
+		request.onerror = (evento) =>{
+			console.log("fallo en editar")
+		}
+		request.onsuccess = (evento)=>{
+			const videojuego = evento.target.result
+				
+			if (file)
+			{
+				
+				let reader = new FileReader()
+				reader.readAsDataURL(file)
+			
+				reader.onload = () =>{
+			
+					videojuego.nombre = nombre
+					videojuego.precio = precio
+					videojuego.fecha = fecha
+					videojuego.descripcion = descripcion
+					videojuego.edad = edad
+					videojuego.tematicas = tematicas
+					videojuego.estado = estado
+					videojuego.file = reader.result
+
+					const modificacion = this.baseDatos.transaction('videojuegos','readwrite').objectStore("videojuegos").put(videojuego)
+					
+					this.obtenerRegistro()
+				}
+			
+			}
+			else{
+					
+					videojuego.nombre = nombre
+					videojuego.precio = precio
+					videojuego.fecha = fecha
+					videojuego.descripcion = descripcion
+					videojuego.edad = edad
+					videojuego.tematicas = tematicas
+					videojuego.estado = estado
+					videojuego.file = null
+
+					const modificacion = this.baseDatos.transaction('videojuegos','readwrite').objectStore("videojuegos").put(videojuego)
+
+					this.obtenerRegistro()
+
+			}
+   		 }
+	}
     /** 
 	 * Inserta un registro en la base de datos
 	*/
-	insertar(nombre, descripcion, fecha, tipo, url){
+	insertar(nombre,precio,fecha,descripcion,edad,tematicas,estado,file){
+	
+		if (file)
 		{
-			let obj={
-				nombre: nombre,
-				descripcion: descripcion,
-				fecha: fecha,
-				tipo: tipo,
-				url: url
+			let reader = new FileReader()
+			reader.readAsDataURL(file)
+			reader.onload = () =>
+			{
+				let obj = {
+					nombre: nombre,
+					precio: precio,
+					fecha: fecha,
+					descripcion: descripcion,
+					edad: edad,
+					tematicas:tematicas,
+					estado:estado,
+					file:reader.result
+				}
+				const almacenar=this.baseDatos.transaction('videojuegos','readwrite').objectStore('videojuegos').add(obj);
+				almacenar.onsuccess=()=>{
+					
+					this.obtenerRegistro()
+				}
 			}
-			console.log("hola mundo")
+		}
+		else
+		{
+			let obj = {
+				nombre: nombre,
+				precio: precio,
+				fecha: fecha,
+				descripcion: descripcion,
+				edad: edad,
+				tematicas:tematicas,
+				estado:estado,
+				file:null
+			}
 			const almacenar=this.baseDatos.transaction('videojuegos','readwrite').objectStore('videojuegos').add(obj);
-
 			almacenar.onsuccess=()=>{
-				console.log("entra en onsucces")
+				
 				this.obtenerRegistro()
 			}
-			
 		}
-	
-
 	}
+	
 	/**
 	 * Devuelve los registros que haya en la base de datos y luego llama a los callbacks para la busqueda por nombre
 	 **/

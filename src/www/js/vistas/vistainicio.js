@@ -13,6 +13,7 @@ export class VistaInicio extends Vista{
 		//Hacemos que la VistaCRUD "observe" al Modelo
 		this.controlador = controlador
 		this.modelo = this.controlador.getModelo()
+
 		this.modelo.registrar(this.actualizar.bind(this))
 		//Elemento html
 		this.buscar = this.div.getElementsByTagName('svg')[0]
@@ -24,7 +25,7 @@ export class VistaInicio extends Vista{
 		//Menu opciones
 		this.buscarNombre = this.div.getElementsByTagName('input')[0]
 	
-		//this.buscarPrecio= this.div.getElementsByTagName('input')[1]
+	
 
 		//Tabla
 		this.tabla = this.div.getElementsByTagName('tbody')[0]
@@ -81,13 +82,14 @@ export class VistaInicio extends Vista{
 				td3.appendChild(spanConsultar)
 				spanConsultar.classList.add('icono')
 				spanConsultar.textContent = '🔎'
+				spanConsultar.onclick = this.consultar.bind(this, dato)
 			
 			
 				let spanEditar = document.createElement('span')
 				td3.appendChild(spanEditar)
 				spanEditar.classList.add('icono')
 				spanEditar.textContent = '✏'
-				spanEditar.onclick = this.editar.bind(this, dato.id)
+				spanEditar.onclick = this.editar.bind(this, dato)
 				
 		}
 		if(datos.length==0)
@@ -108,6 +110,12 @@ export class VistaInicio extends Vista{
 	borrarIngresos(){
 		while (this.tabla.firstElementChild)
 		this.tabla.firstElementChild.remove()
+	}
+	/** 
+	 * Metodo para consultar un registro 
+	*/
+	consultar(dato){	
+		this.controlador.pulsarConsulta(dato);
 	}
 	eliminar(id){	
 		this.controlador.eliminarVideojuego(id)
