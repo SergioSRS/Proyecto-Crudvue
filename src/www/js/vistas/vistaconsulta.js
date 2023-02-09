@@ -1,4 +1,4 @@
-/**
+
 /**
 	@file Contiene la vista consulta de la aplicacion
 	@author Sergio Rivera

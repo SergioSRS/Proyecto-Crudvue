@@ -107,7 +107,7 @@ export class Modelo{
      * @param {boolean} estado Definirá si el juego esta terminado o no
      * @param {object} file Imagen relacionada del juego
 	*/
-	insertar(nombre,precio,fecha,descripcion,edad,tematicas,estado,file){
+	insertar(nombre,precio,fecha,descripcion,edad,file){
 	
 		if (file)
 		{
@@ -121,8 +121,6 @@ export class Modelo{
 					fecha: fecha,
 					descripcion: descripcion,
 					edad: edad,
-					tematicas:tematicas,
-					estado:estado,
 					file:reader.result
 				}
 				const almacenar=this.baseDatos.transaction('videojuegos','readwrite').objectStore('videojuegos').add(obj);
@@ -140,8 +138,6 @@ export class Modelo{
 				fecha: fecha,
 				descripcion: descripcion,
 				edad: edad,
-				tematicas:tematicas,
-				estado:estado,
 				file:null
 			}
 			const almacenar=this.baseDatos.transaction('videojuegos','readwrite').objectStore('videojuegos').add(obj);

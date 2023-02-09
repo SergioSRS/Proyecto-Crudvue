@@ -103,11 +103,11 @@ div.formulario label, div.formulario div, div.formulario  input{
     text-align:center;
     margin:10px;
 }
-.cancelar{
-
+.inactivo{
+    display:none;
 }
-.aceptar {
-
+.activo {
+    display:block;
 }
 #contenedor{
     font-family: '"Times New Roman';
