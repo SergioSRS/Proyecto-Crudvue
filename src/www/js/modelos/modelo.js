@@ -44,8 +44,8 @@ export class Modelo{
 	/** 
 	 * Edita un registro de la base de datos buscando por un id
 	*/
-    editar(id, nombre, precio, fecha, descripcion, edad, tematicas, estado, file){
-		
+    editar(id, nombre, precio, fecha, descripcion, edad, file){
+		console.log(id)
 		const request = this.baseDatos.transaction('videojuegos','readwrite').objectStore("videojuegos").get(id)
 		
 	
@@ -68,8 +68,6 @@ export class Modelo{
 					videojuego.fecha = fecha
 					videojuego.descripcion = descripcion
 					videojuego.edad = edad
-					videojuego.tematicas = tematicas
-					videojuego.estado = estado
 					videojuego.file = reader.result
 
 					const modificacion = this.baseDatos.transaction('videojuegos','readwrite').objectStore("videojuegos").put(videojuego)
@@ -85,8 +83,7 @@ export class Modelo{
 					videojuego.fecha = fecha
 					videojuego.descripcion = descripcion
 					videojuego.edad = edad
-					videojuego.tematicas = tematicas
-					videojuego.estado = estado
+
 					videojuego.file = null
 
 					const modificacion = this.baseDatos.transaction('videojuegos','readwrite').objectStore("videojuegos").put(videojuego)

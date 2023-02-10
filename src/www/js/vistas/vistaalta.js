@@ -64,7 +64,7 @@ export function VistaAlta(controlador){
 			},
 			insertar(){
 			
-				this.controlador.insertar(this.nombre,this.precio,this.fecha,this.descripcion,this.edad,this.subirImagen)
+				this.controlador.insertar(this.nombre,this.precio,this.fecha,this.descripcion,this.edad,this.subirImagen[0])
 				this.controlador.playVistaInicio()
 		
 			},

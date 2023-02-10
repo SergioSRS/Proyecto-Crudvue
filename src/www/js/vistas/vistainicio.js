@@ -14,7 +14,7 @@ export function VistaInicio(controlador){
 			}
 		},
 		template:
-		
+	
 		 `<div :class=clase>
 			<div id="opciones">
 				<label>Nombre<input placeholder="nombre" id="nombre" type="text"></label>
@@ -33,9 +33,9 @@ export function VistaInicio(controlador){
 				<tbody>
 					<tr v-for="dato in datos">
 						<td>{{dato.nombre}}</td>
-						<td v-if="(dato.file)">{{dato.file}}</td>
-						<td v-else>No hay imagen</td>
-						<td><span>Editar </span><span>Borrar </span><span>Eliminar </span></td>
+						<td v-if="(dato.file)"><img :src="dato.file"></td>
+						<td v-else >No hay imagen</td>
+						<td><span @click="editar(dato)" style="cursor:pointer" >✏️</span><span @click="eliminar(dato.id)" style="cursor:pointer;">🗑️</span></td>
 					</tr>
 				</tbody>
 			</table> 
@@ -49,7 +49,14 @@ export function VistaInicio(controlador){
 			},
 			anadir(){
 				this.controlador.playVistaAlta()
-			}
+			},
+			eliminar(id){
+				this.controlador.eliminarVideojuego(id)
+			},
+		/*	editar(dato){
+				console.log(dato)
+				//this.controlador.modificar(dato)
+			}*/
 		}
 	})
 }
