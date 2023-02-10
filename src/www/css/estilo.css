@@ -55,6 +55,16 @@ div#opciones{
     text-align:center;
     margin-bottom:10px;
 }
+#linkAvisos{
+   
+    text-align: center;
+    margin-top:300px;
+}
+#linkAvisos a{
+    color:white;
+    text-decoration: none;
+
+}
 div#opciones > label > input{
     background-color:#999ce0;
     border: 1px #ff00aa solid;

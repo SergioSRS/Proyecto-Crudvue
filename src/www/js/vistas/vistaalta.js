@@ -16,7 +16,8 @@ export function VistaAlta(controlador){
 				fecha:"",
 				descripcion:"",
 				edad: -1,
-				subirImagen:null
+				subirImagen:null,
+				politicas: false
 				
 			}
 		},
@@ -51,6 +52,10 @@ export function VistaAlta(controlador){
 						<label>Accion<input name="tematica" type="checkbox" value="Accion" class="tematica"></label>
 						<label>Terror<input name="tematica" type="checkbox" value="Terror" class="tematica"></label>
 				</div>
+				<div>
+					<label><input v-model="politicas" name="politica" type="checkbox" >Acepto sin reservas la <a href="infoLegal.html">politica de protección de datos personales.</a></label>
+				</div>
+				<div>
 				<button @click="cancelar">Cancelar</button>
 				<button @click="insertar">Aceptar</button>
 				</div>
@@ -63,9 +68,15 @@ export function VistaAlta(controlador){
 					this.clase = 'inactivo'
 			},
 			insertar(){
-			
-				this.controlador.insertar(this.nombre,this.precio,this.fecha,this.descripcion,this.edad,this.subirImagen[0])
-				this.controlador.playVistaInicio()
+				if(this.politicas)
+				{
+					this.controlador.insertar(this.nombre,this.precio,this.fecha,this.descripcion,this.edad,this.subirImagen[0])
+					this.controlador.playVistaInicio()
+				}
+				else{
+					alert("Debes de aceptar la política de protección de datos personales")
+				}
+				
 		
 			},
 			cancelar(){
